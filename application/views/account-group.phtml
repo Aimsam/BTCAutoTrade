@@ -1,0 +1,52 @@
+<?php include "snippets/header.phtml"; ?>
+
+<?php include "snippets/navbar.phtml"; ?>
+
+<div class="container">
+
+
+    <!-- Main component for a primary account_grouping message or call to action -->
+    <div class="jumbotron">
+        <h3>Account group</h3><a href="/account-group/new">New</a>
+        <div class="table-responsive">
+        <table class="table table-striped table-hover" style="font-size: 10px;">
+            <thead>
+                <tr>
+                    <th width="5%">#</th>
+                    <th>名称</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($account_group_list as $account_group) { ?>
+                <tr>
+                    <td><?php echo $account_group['id'];?></td>
+                    <td><?php echo $account_group['name'];?></td>
+                    <td class="handle"><a href="/account-group/<?php echo $account_group['id']; ?>">查看</a> / <a href="/account-group/<?php echo $account_group['id']; ?>/edit">编辑</a> / <a class="del_a">删除</a></td>
+                </tr>
+                <?php } ?>
+            </tbody>
+            <form id="del_form" action="/account-group" method="post">
+                <input id="del_id" type="hidden" name="id" value="">
+                <input type="hidden" name="_method" value="delete">
+            </form>
+        </table>
+        </div>
+    </div>
+
+</div> <!-- /container -->
+
+
+<?php include "snippets/footer.phtml"; ?>
+<!-- Script -->
+<script>
+    var a = 2;
+    $(document).ready(function() {
+        $('.del_a').click(function() {
+            if (confirm('sure delete?')) {
+                var id = $(this).parent().parent().children(1).html();
+                $('#del_id').val(id);
+                $('#del_form').submit();
+            }
+        });
+    });
+</script>

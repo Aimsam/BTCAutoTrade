@@ -1,0 +1,47 @@
+<?php include "snippets/header.phtml"; ?>
+
+<?php include "snippets/navbar.phtml"; ?>
+
+<div class="container">
+
+
+    <!-- Main component for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <h3>账号运行情况</h3>
+        <?php
+            $total_cny = 0;
+            $total_btc = 0;
+            $total_frozen_cny = 0;
+            $total_frozen_btc = 0;
+            foreach ($account_info_list as $key => $account_info) : ?>
+            <h5>#<?php echo $key.' '.$account_info['market_name'].date('  Y-m-d H:i:s', $account_info['time']);
+                $total_cny += $account_info['frozen_cny'] + $account_info['available_cny'];
+                $total_btc += $account_info['frozen_btc'] + $account_info['available_btc'];
+                $total_frozen_cny += $account_info['frozen_cny'];
+                $total_frozen_btc += $account_info['frozen_btc'];
+                ?><br>冻结CNY : <?php echo $account_info['frozen_cny']; ?>  <br>冻结BTC : <?php echo $account_info['frozen_btc']; ?>  <br>
+                <br>可用CNY : <?php echo $account_info['available_cny']; ?>  <br>可用BTC : <?php echo $account_info['available_btc']; ?>
+            </h5>
+        <?php endforeach; ?>
+        <?php
+        echo '<h2>利润: </h2>'.($total_cny - $account_group_config['cny_input'] + ($total_btc - $account_group_config['btc_input']) * $btc_price) ;
+        echo '<h4> 盈利多余CNY:'.($total_cny - $account_group_config['cny_input']).'</h4>'; echo '<h4> 盈利多余BTC:'.($total_btc - $account_group_config['btc_input']).'</h4>';
+        echo '<h4> CNY总量:'.($total_cny).'</h4>'; echo '<h4> BTC总量:'.($total_btc).'</h4>';
+        echo '<h4> 总共冻结CNY:'.($total_frozen_cny).'</h4>'; echo '<h4>总共冻结BTC:'.($total_frozen_btc).'</h4><br>';
+
+        ?>
+</div> <!-- /container -->
+
+
+<?php include "snippets/footer.phtml"; ?>
+<!-- Script -->
+<script>
+    var a = 2;
+    $(document).ready(function() {
+        $('.handle').click(function() {
+            var id = $(this).parent().children(1).html();
+            $('#del_id').val(id);
+            $('#del').submit();
+        });
+    });
+</script>

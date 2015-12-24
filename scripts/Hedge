@@ -1,0 +1,2 @@
+#!/bin/bash
+php ../public/cli.php "request_uri=/console/Hedge/run" > ../log/hedge.log 2>&1 &

@@ -1,0 +1,55 @@
+<body>
+<!-- Fixed navbar -->
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">比特币操盘手 2.0</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/">首页</a></li>
+                <?php $is_admin = Yaf\Session::getInstance()->get('is_admin');
+                if ( $is_admin === '1') : ?>
+                <li><a href="/control">控制面板</a></li>
+                <li><a href="/log">日志</a></li>
+                <li><a href="/orders">交易记录</a></li>
+<!--                <li class="dropdown">-->
+<!--                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>-->
+<!--                    <ul class="dropdown-menu">-->
+<!--                        <li><a href="#">Action</a></li>-->
+<!--                        <li><a href="#">Another action</a></li>-->
+<!--                        <li><a href="#">Something else here</a></li>-->
+<!--                        <li class="divider"></li>-->
+<!--                        <li class="dropdown-header">Nav header</li>-->
+<!--                        <li><a href="#">Separated link</a></li>-->
+<!--                        <li><a href="#">One more separated link</a></li>-->
+<!--                    </ul>-->
+<!--                </li>-->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">管理<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/account-group">账号组</a></li>
+                        <li><a href="/markets">市场</a></li>
+                        <li><a href="/accounts">账号</a></li>
+                    </ul>
+                </li>
+                <?php else: ?>
+                <li><a href="/log">日志</a></li>
+                <li><a href="/orders">交易记录</a></li>
+                <li><a href="/account-group/1">盈利状态</a></li>
+                <?php endif ?>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+<!--                <li><a href="../navbar/">Default</a></li>-->
+                <li><a href="#">Dev Mode</a></li>
+<!--                <li class="active"><a href="index">Fixed top</a></li>-->
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</div>

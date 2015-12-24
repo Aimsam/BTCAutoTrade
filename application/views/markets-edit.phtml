@@ -1,0 +1,60 @@
+<?php include "snippets/header.phtml"; ?>
+
+<?php include "snippets/navbar.phtml"; ?>
+
+<div class="container">
+
+
+    <!-- Main component for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <h3>市场编辑 <?php echo '#'.$market['id']; ?></h3>
+        <form action="/markets" method="post" class="form-horizontal">
+            <fieldset>
+                <div class="control-group">
+                    <!-- Text input-->
+                    <div class="controls">
+                        <input type="hidden" name="id" value="<?php echo $market['id']; ?>">
+                        <input type="hidden" name="_method" value="put">
+                        <input type="text" name="name" value="<?php echo $market['name']; ?>" placeholder="Name" class="input-xlarge">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <!-- Text input-->
+                    <div class="controls">
+                        <input type="text" name="description" value="<?php echo $market['description']; ?>" placeholder="Description" class="input-xlarge">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <!-- Text input-->
+                    <div class="controls">
+                        <input type="text" name="url" value="<?php echo $market['url']; ?>"  placeholder="Url" class="input-xlarge">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <!-- Button -->
+                    <div class="controls">
+                        <input type="submit" class="btn btn-success">
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+
+    </div>
+
+</div> <!-- /container -->
+
+
+<?php include "snippets/footer.phtml"; ?>
+<!-- Script -->
+<script>
+    var a = 2;
+    $(document).ready(function() {
+        $('.handle').click(function() {
+            var id = $(this).parent().children(1).html();
+            $('#del_id').val(id);
+            $('#del').submit();
+        });
+    });
+</script>

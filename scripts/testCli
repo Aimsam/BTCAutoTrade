@@ -1,0 +1,1 @@
+php ../public/cli.php "request_uri=/console/index/test"

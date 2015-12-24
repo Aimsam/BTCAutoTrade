@@ -1,0 +1,17 @@
+<?php header(empty($status_code)?'HTTP/1.1 404 Ca' : $status_code); ?>
+
+<?php include "snippets/header.phtml"; ?>
+
+<?php include "snippets/navbar.phtml"; ?>
+
+<div class="container">
+
+    <!-- Main component for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <h1>No Auth</h1>
+        <p><a href="/login">click login</p>
+    </div>
+
+</div> <!-- /container -->
+
+<?php include "snippets/footer.phtml"; ?>

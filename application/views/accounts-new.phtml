@@ -1,0 +1,92 @@
+<?php include "snippets/header.phtml"; ?>
+
+<?php include "snippets/navbar.phtml"; ?>
+
+<div class="container">
+
+
+    <!-- Main component for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <h3>Create Account</h3>
+        <form action="/accounts" method="post" class="form-horizontal">
+            <fieldset>
+                <div class="control-group">
+                    <!-- Text input-->
+                    <div class="controls">
+                        <input type="hidden" name="_method" value="post">
+                        <input type="hidden" id="market_name" name="market_name" value="">
+                        <input type="text" name="name" value="" placeholder="Name" class="input-xlarge">
+                        <input type="text" name="description" value="" placeholder="Description" class="input-xlarge">
+
+                        <div class="control-group">
+                            <!-- Select Basic -->
+                            <label class="control-label">选择 - 市场</label>
+                            <div class="controls">
+                                <select id="market" name="market_id" class="input-xlarge">
+                                    <?php foreach ($market_list as $market) { ?>
+                                    <option value="<?php echo $market['id']; ?>"><?php echo $market['name']; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+
+                            <?php
+                                foreach ($account_config_list as $key => $account_config) {
+                            ?>
+                            <div class="control-group config_pane" id="<?php echo $key; ?>" style="display: none;">
+                                    <?php foreach ($account_config as $config) { ?>
+                                        <!-- Text input--><?php echo "$config:"; ?>
+                                        <div class="controls">
+                                             <input type="text" name="<?php echo "$key"."_"."$config"; ?>" value="" placeholder="<?php echo "$config"; ?>" class="input-xlarge">
+                                        </div>
+                                    <?php } ?>
+                            </div>
+                            <?php } ?>
+
+                            <!-- Select Basic -->
+                            <label class="control-label">选择 - 账号组</label>
+                            <div class="controls">
+                                <select name="account_group_id" class="input-xlarge">
+                                    <?php foreach ($account_group_list as $account_group) { ?>
+                                        <option value="<?php echo $account_group['id']; ?>"><?php echo $account_group['name']; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <!-- Button -->
+                    <div class="controls">
+                        <input type="submit" class="btn btn-success">
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+
+    </div>
+
+</div> <!-- /container -->
+
+
+<?php include "snippets/footer.phtml"; ?>
+<!-- Script -->
+<script>
+    var a = 2;
+    $(document).ready(function() {
+        $('.handle').click(function() {
+            var id = $(this).parent().children(1).html();
+            $('#del_id').val(id);
+            $('#del').submit();
+        });
+        var config_pane = '#' + $('#market').find("option:selected").text();
+        $(config_pane).fadeIn();
+        $('#market_name').val($('#market').find("option:selected").text());
+        $('#market').change(function () {
+            $('.config_pane').fadeOut();
+            var config_pane = '#' + $('#market').find("option:selected").text();
+            $(config_pane).fadeIn();
+            $('#market_name').val($('#market').find("option:selected").text());
+        });
+    });
+</script>

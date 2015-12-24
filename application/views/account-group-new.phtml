@@ -1,0 +1,51 @@
+<?php include "snippets/header.phtml"; ?>
+
+<?php include "snippets/navbar.phtml"; ?>
+
+<div class="container">
+
+
+    <!-- Main component for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <h3>新建账号组</h3>
+        <form action="/account-group" method="post" class="form-horizontal">
+            <fieldset>
+                <div class="control-group">
+                    <!-- Text input-->
+                    <div class="controls">
+                        <input type="hidden" name="_method" value="post">
+                        名称:<br><input type="text" name="name" value="" placeholder="Name" class="input-xlarge">
+                        <?php foreach ($config_list as $config) {
+                            echo '<div class="controls">'.$config.':<br><input type="text" name="config['.$config.']" value="" placeholder="'.$config.'" class="input-xlarge"></div>';
+                        }
+                        ?>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <!-- Button -->
+                    <div class="controls">
+                        <input type="submit" class="btn btn-success">
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+
+    </div>
+
+</div> <!-- /container -->
+
+
+<?php include "snippets/footer.phtml"; ?>
+<!-- Script -->
+<script>
+    var a = 2;
+    $(document).ready(function() {
+        $('.handle').click(function() {
+            var id = $(this).parent().children(1).html();
+            $('#del_id').val(id);
+            $('#del').submit();
+        });
+    });
+</script>

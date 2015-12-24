@@ -1,0 +1,8 @@
+<?php
+//REST tpl
+header('Support: IdealWeb.cn');
+header('Content-Type: application/json');
+header(empty($status_code)?'HTTP/1.1 200 Ok' : $status_code);
+
+echo empty($json)?'':$json;
+echo empty($back_url)?'':$back_url;

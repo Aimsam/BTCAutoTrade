@@ -1,0 +1,59 @@
+<?php include "snippets/header.phtml"; ?>
+
+<?php include "snippets/navbar.phtml"; ?>
+
+<div class="container">
+
+
+    <!-- Main component for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <h3>新建市场</h3>
+        <form action="/markets" method="post" class="form-horizontal">
+            <fieldset>
+                <div class="control-group">
+                    <!-- Text input-->
+                    <div class="controls">
+                        <input type="hidden" name="_method" value="post">
+                        <input type="text" name="name" value="" placeholder="Name" class="input-xlarge">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <!-- Text input-->
+                    <div class="controls">
+                        <input type="text" name="description" value="" placeholder="Description" class="input-xlarge">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <!-- Text input-->
+                    <div class="controls">
+                        <input type="text" name="url" value=""  placeholder="Url" class="input-xlarge">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <!-- Button -->
+                    <div class="controls">
+                        <input type="submit" class="btn btn-success">
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+
+    </div>
+
+</div> <!-- /container -->
+
+
+<?php include "snippets/footer.phtml"; ?>
+<!-- Script -->
+<script>
+    var a = 2;
+    $(document).ready(function() {
+        $('.handle').click(function() {
+            var id = $(this).parent().children(1).html();
+            $('#del_id').val(id);
+            $('#del').submit();
+        });
+    });
+</script>

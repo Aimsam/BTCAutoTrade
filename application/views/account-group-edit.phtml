@@ -1,0 +1,51 @@
+<?php include "snippets/header.phtml"; ?>
+
+<?php include "snippets/navbar.phtml"; ?>
+
+<div class="container">
+
+
+    <!-- Main component for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <h3>账号组编辑 <?php echo '#'.$account_group['id']; ?></h3>
+        <form action="/account-group" method="post" class="form-horizontal">
+            <fieldset>
+                <div class="control-group">
+                    <!-- Text input-->
+                    <div class="controls">
+                        <input type="hidden" name="id" value="<?php echo $account_group['id']; ?>">
+                        <input type="hidden" name="_method" value="put">
+                        <input type="text" name="name" value="<?php echo $account_group['name']; ?>" placeholder="Name" class="input-xlarge">
+                        <?php foreach ($config_list as $config) {
+                            echo '<div class="controls">'.$config['name'].':<br><input type="text" name="config['.$config['name'].']" value="'.$config['value'].'" placeholder="'.$config['name'].'" class="input-xlarge"></div>';
+                        }
+                        ?>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <!-- Button -->
+                    <div class="controls">
+                        <input type="submit" class="btn btn-success">
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+
+    </div>
+
+</div> <!-- /container -->
+
+
+<?php include "snippets/footer.phtml"; ?>
+<!-- Script -->
+<script>
+    var a = 2;
+    $(document).ready(function() {
+        $('.handle').click(function() {
+            var id = $(this).parent().children(1).html();
+            $('#del_id').val(id);
+            $('#del').submit();
+        });
+    });
+</script>

@@ -1,0 +1,21 @@
+<?php include "snippets/header.phtml"; ?>
+
+<?php include "snippets/navbar.phtml"; ?>
+
+<div class="container">
+
+    <!-- Main component for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <h4>日志</h4>
+        <a href="javascript:void(0);" class="btn btn-primary" onclick="javascript:location.reload();">Reload</a>
+        <p style="font-size:12px;">
+        <?php echo nl2br($logs);?>
+        </p>
+
+    </div>
+
+</div> <!-- /container -->
+<script type="text/javascript">
+    setTimeout("location.reload()", 10000);
+</script>
+<?php include "snippets/footer.phtml"; ?>

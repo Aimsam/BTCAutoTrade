@@ -1,0 +1,82 @@
+<?php include "snippets/header.phtml"; ?>
+
+<?php include "snippets/navbar.phtml"; ?>
+
+<div class="container">
+
+
+    <!-- Main component for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <h3>账号编辑</h3>
+        <form action="/accounts" method="post" class="form-horizontal">
+            <fieldset>
+                <div class="control-group">
+                    <!-- Text input-->
+                    <div class="controls">
+                        <input type="hidden" name="_method" value="put">
+                        <input type="hidden" name="market_name" value="<?php echo $market['name']; ?>" value="put">
+                        <input type="text" name="name" value="<?php echo $account['name']; ?>" placeholder="Name" class="input-xlarge">
+                        <input type="hidden" name="id" value="<?php echo $account['id']; ?>" placeholder="Name" class="input-xlarge">
+                        <input type="text" name="description" value="<?php echo $account['description']; ?>" placeholder="Description" class="input-xlarge">
+
+                        <div class="control-group">
+                            <!-- Select Basic -->
+                            <label class="control-label">Select - Market</label>
+                            <div class="controls">
+                                <select name="market_id" class="input-xlarge">
+                                        <option value="<?php echo $market['id']; ?>"><?php echo $market['name']; ?></option>
+                                </select>
+                            </div>
+                            <?php
+                            foreach ($account_config_list as $account_config) {
+                                ?>
+                                <div class="control-group config_pane">
+                                    <!-- Text input--><?php echo "{$account_config['name']}:"; ?>
+                                    <div class="controls">
+                                        <input type="text" name="<?php echo $market['name'].'_'.$account_config['name']; ?>" value="<?php echo $account_config['value']; ?>" placeholder="<?php echo $account_config['name']; ?>" class="input-xlarge">
+                                    </div>
+                                </div>
+                            <?php } ?>
+                            <!-- Select Basic -->
+                            <label class="control-label">选择 - 账号组</label>
+                            <div class="controls">
+                                <select name="account_group_id" class="input-xlarge">
+                                    <?php foreach ($account_group_list as $account_group) { ?>
+                                        <option value="<?php echo $account_group['id']; ?>"
+                                            <?php if ($account['account_group_id'] == $account_group['id']) { ?> selected="selected"<?php } ?>
+                                        >
+
+                                            <?php echo $account_group['name']; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <!-- Button -->
+                    <div class="controls">
+                        <input type="submit" class="btn btn-success">
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+
+    </div>
+
+</div> <!-- /container -->
+
+
+<?php include "snippets/footer.phtml"; ?>
+<!-- Script -->
+<script>
+    var a = 2;
+    $(document).ready(function() {
+        $('.handle').click(function() {
+            var id = $(this).parent().children(1).html();
+            $('#del_id').val(id);
+            $('#del').submit();
+        });
+    });
+</script>

@@ -1,0 +1,50 @@
+<?php include "snippets/header.phtml"; ?>
+
+<?php include "snippets/navbar.phtml"; ?>
+
+<div class="container">
+
+    <!-- Main component for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <div>
+<!--            <h3>since 2014-2-24 11:00:00</h3>-->
+<!--            <h4>-->
+<!--                sum deal: 826            </h4>-->
+<!--            <h4>-->
+<!--                sum earn: 753.1740            </h4>-->
+
+            <table class="table table-striped" style="font-size: 10px;">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>时间</th>
+                    <th>价格</th>
+                    <th>类型</th>
+                    <th>账号</th>
+                    <th>对冲单号</th>
+                    <th>交易单号</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                if (!empty($order_list))
+                foreach ($order_list as $order) { ?>
+                <tr>
+                    <td><?php echo $order['id']; ?></td>
+                    <td><?php echo $order['created']; ?></td>
+                    <td><?php echo $order['price']; ?></td>
+                    <td><?php echo ($order['order_type']==1)?'buy':'sell'; ?></td>
+                    <td><?php echo $account_list[$order['account_id']]; ?></td>
+                    <td><?php echo $order['trade_id']; ?></td>
+                    <td><?php echo $order['order_id']; ?></td>
+                </tr>
+                <?php }?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div> <!-- /container -->
+
+
+<?php include "snippets/footer.phtml"; ?>

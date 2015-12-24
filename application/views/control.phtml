@@ -1,0 +1,38 @@
+<?php include "snippets/header.phtml"; ?>
+
+<?php include "snippets/navbar.phtml"; ?>
+<script>
+    function delayURL(url, time) {
+        setTimeout("top.location.href='" + url + "'", time);
+    }
+</script>
+<div class="container">
+
+    <!-- Main component for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <h4>Control Panel</h4>
+        <p><a href="/control/restart">重启程序</a></p></p>
+        <p><a href="/control/killall">停止对冲\停止价格</a></p></p>
+    </div>
+
+    <div class="jumbotron">
+        <h4>Console</h4>
+        <p><small>
+            <?php
+            if (!empty($return))
+            foreach ($return as $row) {
+                echo "$row<br>";
+            ?>
+            <script>
+                delayURL('/control', 2000);
+            </script>
+            <?php
+
+            } ?>
+        </small></p>
+    </div>
+
+</div> <!-- /container -->
+
+
+<?php include "snippets/footer.phtml"; ?>

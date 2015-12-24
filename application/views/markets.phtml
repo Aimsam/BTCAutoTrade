@@ -1,0 +1,57 @@
+<?php include "snippets/header.phtml"; ?>
+
+<?php include "snippets/navbar.phtml"; ?>
+
+<div class="container">
+
+
+    <!-- Main component for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <h3>新建</h3><a href="/markets/new">市场</a>
+        <div class="table-responsive">
+        <table class="table table-striped table-hover" style="font-size: 10px;">
+            <thead>
+                <tr>
+                    <th width="5%">#</th>
+                    <th>名称</th>
+                    <th>描述</th>
+                    <th>Url</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($market_list as $market) { ?>
+                <tr>
+                    <td><?php echo $market['id'];?></td>
+                    <td><?php echo $market['name'];?></td>
+                    <td><?php echo $market['description'];?></td>
+                    <td><?php echo $market['url'];?></td>
+                    <td class="handle"><a href="/markets/<?php echo $market['id']; ?>/edit">Edit</a> / <a class="del_a">Del</a></td>
+                </tr>
+                <?php } ?>
+            </tbody>
+            <form id="del_form" action="/markets" method="post">
+                <input id="del_id" type="hidden" name="id" value="">
+                <input type="hidden" name="_method" value="delete">
+            </form>
+        </table>
+        </div>
+    </div>
+
+</div> <!-- /container -->
+
+
+<?php include "snippets/footer.phtml"; ?>
+<!-- Script -->
+<script>
+    var a = 2;
+    $(document).ready(function() {
+        $('.del_a').click(function() {
+            if (confirm('sure delete?')) {
+                var id = $(this).parent().parent().children(1).html();
+                $('#del_id').val(id);
+                $('#del_form').submit();
+            }
+        });
+    });
+</script>
